@@ -170,6 +170,16 @@ padding: 10px;</string>
                       </widget>
                      </item>
                      <item>
+                      <widget class="QLabel" name="lblPostureEvent">
+                       <property name="styleSheet">
+                        <string notr="true">QLabel{color:#60A5FA;font-size:14px;font-weight:bold;}</string>
+                       </property>
+                       <property name="text">
+                        <string>当前姿态事件：稳定行驶</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
                       <widget class="QWidget" name="widgetFatigue_3" native="true">
                        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,2">
                         <item>
@@ -298,6 +308,19 @@ QProgressBar::chunk {
                        </property>
                        <property name="text">
                         <string>路况风险：安全</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="lblCombinedRisk">
+                       <property name="styleSheet">
+                        <string notr="true">QLabel{color:#22C55E;font-size:13px;font-weight:bold;}</string>
+                       </property>
+                       <property name="text">
+                        <string>综合风险等级：正常</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>

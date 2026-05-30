@@ -66,6 +66,10 @@ private:
         QString slopeStatus;
         QString roadRisk;
         RiskLevel riskLevel = RiskLevel::Normal;
+        // --- 新增姿态事件字段 ---
+        PostureEvent event = PostureEvent::Stable;
+        QString eventName;
+        QString voicePrompt;
     };
 
     void initUiState();
@@ -75,6 +79,7 @@ private:
     void loadFaceCascade();
     bool readMPU6050(SensorData &out);
     RoadResult analyzeRoad(const SensorData &data);
+    RoadResult detectPostureEvent(const SensorData &data);
     void updateHardwareStatusBar(const QString &prefix = QString());
     void setStatusText(const QString &text);
     bool checkSpeakerStatus() const;
@@ -130,6 +135,7 @@ private:
     RiskLevel currentDriverRisk = RiskLevel::Normal;
     RiskLevel currentRoadRisk = RiskLevel::Normal;
     RiskLevel lastDriverAlertRisk = RiskLevel::Normal;
+    RiskLevel currentCombinedRisk = RiskLevel::Normal;
     int voiceSequenceId = 0;
 
     double lastAccMagnitude = -1.0;
@@ -154,6 +160,11 @@ private:
 
     // 最近行为
     QString m_lastSocketBehavior;
+
+    // 姿态事件追踪
+    int m_tiltFrameCount = 0;
+    PostureEvent m_lastAlertedPosture = PostureEvent::Stable;
+    qint64 m_lastPostureVoiceMs = 0;
 };
 
 #endif // MAINWINDOW_H

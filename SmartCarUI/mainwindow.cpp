@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
     SensorData firstData;
     sensorOk = readMPU6050(firstData);
     if (sensorOk) {
-        RoadResult firstRoad = analyzeRoad(firstData);
+        RoadResult firstRoad = detectPostureEvent(firstData);
         ui->lblAttitude_3->setText(
             QString("六轴姿态数据\n加速度(g)：X %1  Y %2  Z %3\n角速度(°/s)：X %4  Y %5  Z %6\nPitch：%7°  Roll：%8°")
                 .arg(firstData.ax, 0, 'f', 2)
@@ -94,6 +94,13 @@ MainWindow::MainWindow(QWidget *parent)
         ui->lblRoadRisk->setText("路况风险：" + firstRoad.roadRisk);
         currentRoadRisk = firstRoad.riskLevel;
         applyRoadRiskStyle(firstRoad.riskLevel);
+
+        // 初始化姿态事件和联合风险
+        currentCombinedRisk = BehaviorDialog::combinedRisk(currentDriverRisk, currentRoadRisk);
+        if (ui->lblPostureEvent)
+            ui->lblPostureEvent->setText(QStringLiteral("当前姿态事件：%1").arg(firstRoad.eventName));
+        if (ui->lblCombinedRisk)
+            ui->lblCombinedRisk->setText(QStringLiteral("综合风险等级：%1").arg(riskName(currentCombinedRisk)));
     } else {
         ui->lblAttitude_3->setText("六轴姿态数据\n传感器连接异常：未读取到 MPU6050 数据");
         ui->lblCarStatus->setText("当前姿态：等待六轴传感器数据");
@@ -101,6 +108,10 @@ MainWindow::MainWindow(QWidget *parent)
         ui->lblShakeLevel->setText("颠簸等级：未知");
         ui->lblSlopeStatus->setText("坡度状态：未知");
         ui->lblRoadRisk->setText("路况风险：未知");
+        if (ui->lblPostureEvent)
+            ui->lblPostureEvent->setText(QStringLiteral("当前姿态事件：传感器异常"));
+        if (ui->lblCombinedRisk)
+            ui->lblCombinedRisk->setText(QStringLiteral("综合风险等级：传感器异常"));
     }
 
     updateHardwareStatusBar("系统启动完成");
@@ -424,7 +435,7 @@ bool MainWindow::readMPU6050(SensorData &out)
     return true;
 }
 
-MainWindow::RoadResult MainWindow::analyzeRoad(const SensorData &data)
+MainWindow::RoadResult MainWindow::detectPostureEvent(const SensorData &data)
 {
     RoadResult result;
 
@@ -442,6 +453,45 @@ MainWindow::RoadResult MainWindow::analyzeRoad(const SensorData &data)
 
     const double bumpScore = std::max(accDeviation, jerk);
 
+    // ========== 姿态事件检测（优先级从高到低）==========
+
+    // ① 剧烈冲击：合加速度 > 2.5g
+    if (accMagnitude > 2.5) {
+        result.event = PostureEvent::SevereImpact;
+    }
+    // ② 急刹车：纵向(ax)短时大幅负变化 + 明显加速度突变
+    else if (jerk > 0.35 && data.ax < -0.25) {
+        result.event = PostureEvent::SuddenBrake;
+    }
+    // ③ 急转弯：横向加速度(ay)或偏航角速度(gz)显著
+    else if (std::fabs(data.ay) > 0.35 || gyroMax > 60.0) {
+        result.event = PostureEvent::SharpTurn;
+    }
+    // ④ 异常侧倾：|roll|>12°连续多帧
+    else if (absRoll > 12.0) {
+        ++m_tiltFrameCount;
+        if (m_tiltFrameCount >= 3) {
+            result.event = PostureEvent::AbnormalTilt;
+        } else {
+            result.event = PostureEvent::Stable;
+        }
+    } else {
+        m_tiltFrameCount = 0;
+    }
+
+    // ⑤-⑥ 颠簸（上面的高优先级分支没命中才进这里）
+    if (result.event == PostureEvent::Stable) {
+        const double azDev = std::fabs(data.az - 1.0);
+        if (azDev > 0.40 || accDeviation > 0.40) {
+            result.event = PostureEvent::SevereBump;
+        } else if (azDev > 0.12 || accDeviation > 0.12) {
+            result.event = PostureEvent::SlightBump;
+        }
+    }
+
+    // ========== 结构化描述字段 ==========
+
+    // 姿态描述
     if (absRoll > 25.0 || absPitch > 25.0 || gyroMax > 120.0) {
         result.carStatus = "姿态异常/剧烈转向";
     } else if (absRoll > 12.0) {
@@ -454,6 +504,7 @@ MainWindow::RoadResult MainWindow::analyzeRoad(const SensorData &data)
         result.carStatus = "平稳行驶";
     }
 
+    // 路况描述
     if (bumpScore < 0.08) {
         result.roadMain = "平缓路面";
         result.shakeLevel = "无颠簸";
@@ -468,6 +519,7 @@ MainWindow::RoadResult MainWindow::analyzeRoad(const SensorData &data)
         result.shakeLevel = "严重颠簸";
     }
 
+    // 坡度描述
     if (data.pitch > 8.0) {
         result.slopeStatus = "上坡";
     } else if (data.pitch < -8.0) {
@@ -480,19 +532,11 @@ MainWindow::RoadResult MainWindow::analyzeRoad(const SensorData &data)
         result.slopeStatus = "平直路面";
     }
 
-    if (bumpScore >= 0.35 || absPitch > 25.0 || absRoll > 25.0 || gyroMax > 120.0) {
-        result.riskLevel = RiskLevel::High;
-        result.roadRisk = "高风险";
-    } else if (bumpScore >= 0.18 || absPitch > 15.0 || absRoll > 15.0 || gyroMax > 80.0) {
-        result.riskLevel = RiskLevel::Medium;
-        result.roadRisk = "中风险";
-    } else if (bumpScore >= 0.08 || absPitch > 8.0 || absRoll > 8.0 || gyroMax > 45.0) {
-        result.riskLevel = RiskLevel::Low;
-        result.roadRisk = "低风险";
-    } else {
-        result.riskLevel = RiskLevel::Normal;
-        result.roadRisk = "安全";
-    }
+    // ========== 风险等级由 PostureEvent 映射决定 ==========
+    result.riskLevel = BehaviorDialog::postureToRisk(result.event);
+    result.eventName = BehaviorDialog::postureToText(result.event);
+    result.voicePrompt = BehaviorDialog::postureToVoice(result.event);
+    result.roadRisk = riskName(result.riskLevel);
 
     return result;
 }
@@ -513,8 +557,11 @@ void MainWindow::readMPU6050Data()
         return;
     }
 
-    RoadResult road = analyzeRoad(data);
+    RoadResult road = detectPostureEvent(data);
     currentRoadRisk = road.riskLevel;
+
+    // 联合风险判定
+    currentCombinedRisk = BehaviorDialog::combinedRisk(currentDriverRisk, currentRoadRisk);
 
     ui->lblAttitude_3->setText(
         QString("六轴姿态数据\n加速度(g)：X %1  Y %2  Z %3\n角速度(°/s)：X %4  Y %5  Z %6\nPitch：%7°  Roll：%8°")
@@ -534,10 +581,47 @@ void MainWindow::readMPU6050Data()
     ui->lblRoadRisk->setText("路况风险：" + road.roadRisk);
     applyRoadRiskStyle(road.riskLevel);
 
+    // 更新姿态事件标签
+    if (ui->lblPostureEvent) {
+        QString postureText = QStringLiteral("当前姿态事件：%1").arg(road.eventName);
+        ui->lblPostureEvent->setText(postureText);
+    }
+    if (ui->lblCombinedRisk) {
+        QString combinedText = QStringLiteral("综合风险等级：%1").arg(riskName(currentCombinedRisk));
+        ui->lblCombinedRisk->setText(combinedText);
+        QString combinedColor;
+        switch (currentCombinedRisk) {
+        case RiskLevel::High:   combinedColor = QStringLiteral("#EF4444"); break;
+        case RiskLevel::Medium: combinedColor = QStringLiteral("#FB923C"); break;
+        case RiskLevel::Low:    combinedColor = QStringLiteral("#FACC15"); break;
+        default:                combinedColor = QStringLiteral("#22C55E"); break;
+        }
+        ui->lblCombinedRisk->setStyleSheet(
+            QStringLiteral("QLabel{color:%1; font-size:13px; font-weight:bold;}").arg(combinedColor));
+    }
+
     qint64 now = QDateTime::currentMSecsSinceEpoch();
-    if (road.riskLevel >= RiskLevel::Medium && !voiceBusy && now - lastRoadAlertMs > 20000) {
+
+    // 姿态事件特定语音提示
+    if (!voiceBusy && road.event >= PostureEvent::SuddenBrake && now - m_lastPostureVoiceMs > 15000) {
+        // 避免同一事件类型重复播报
+        if (road.event != m_lastAlertedPosture || now - m_lastPostureVoiceMs > 30000) {
+            if (!road.voicePrompt.isEmpty()) {
+                m_lastPostureVoiceMs = now;
+                m_lastAlertedPosture = road.event;
+                speak(road.voicePrompt);
+                setStatusText(QStringLiteral("姿态提醒：%1").arg(road.voicePrompt));
+            }
+        }
+    }
+
+    // 保持向后兼容的路况语音提醒
+    if (road.riskLevel >= RiskLevel::Medium && !voiceBusy && now - lastRoadAlertMs > 20000
+        && road.voicePrompt.isEmpty()) {
         lastRoadAlertMs = now;
-        QString warning = (road.riskLevel == RiskLevel::High) ? "检测到高风险路况，请立即减速慢行" : "检测到路况异常，请注意驾驶安全";
+        QString warning = (road.riskLevel == RiskLevel::High)
+            ? "检测到高风险路况，请立即减速慢行"
+            : "检测到路况异常，请注意驾驶安全";
         speak(warning);
         setStatusText("路况提醒：" + warning);
     }
@@ -1068,10 +1152,13 @@ void MainWindow::onJsonReadyRead()
         ui->lblDriverStatus->setText(statusText);
         applyDriverRiskStyle(risk);
 
-        // 2) 记录最近行为
+        // 2) 更新驾驶员风险评估（用于联合风险判定）
+        currentDriverRisk = risk;
+
+        // 3) 记录最近行为
         m_lastSocketBehavior = behavior;
 
-        // 3) 弹窗（只有 Medium/High 才弹）
+        // 4) 弹窗（只有 Medium/High 才弹）
         bool popped = BehaviorDialog::showAlert(risk, text, behavior);
         if (popped) {
             setStatusText(QStringLiteral("行为警报：%1").arg(text));

@@ -142,6 +142,43 @@ static const QMap<QString, QString> BEHAVIOR_TEXT_MAP = {
 
 
 // ============================================================
+// PostureEvent → RiskLevel 映射表
+// ============================================================
+static const QMap<PostureEvent, RiskLevel> POSTURE_RISK_MAP = {
+    {PostureEvent::Stable,          RiskLevel::Normal},
+    {PostureEvent::SlightBump,      RiskLevel::Low},
+    {PostureEvent::SuddenBrake,     RiskLevel::Medium},
+    {PostureEvent::SharpTurn,       RiskLevel::Medium},
+    {PostureEvent::SevereBump,      RiskLevel::Medium},
+    {PostureEvent::AbnormalTilt,    RiskLevel::Medium},
+    {PostureEvent::SevereImpact,    RiskLevel::High},
+};
+
+// ============================================================
+// PostureEvent → 显示文字
+// ============================================================
+static const QMap<PostureEvent, QString> POSTURE_TEXT_MAP = {
+    {PostureEvent::Stable,          QStringLiteral("姿态平稳")},
+    {PostureEvent::SlightBump,      QStringLiteral("轻微颠簸")},
+    {PostureEvent::SuddenBrake,     QStringLiteral("急刹车")},
+    {PostureEvent::SharpTurn,       QStringLiteral("急转弯")},
+    {PostureEvent::SevereBump,      QStringLiteral("剧烈颠簸")},
+    {PostureEvent::AbnormalTilt,    QStringLiteral("异常侧倾")},
+    {PostureEvent::SevereImpact,    QStringLiteral("剧烈冲击")},
+};
+
+// ============================================================
+// PostureEvent → 语音提示
+// ============================================================
+static const QMap<PostureEvent, QString> POSTURE_VOICE_MAP = {
+    {PostureEvent::SuddenBrake,     QStringLiteral("检测到急刹车，请保持安全车距")},
+    {PostureEvent::SharpTurn,       QStringLiteral("检测到转向幅度较大，请减速慢行")},
+    {PostureEvent::SevereBump,      QStringLiteral("检测到车辆颠簸明显，请注意路况")},
+    {PostureEvent::AbnormalTilt,    QStringLiteral("检测到车身姿态异常，请检查路面情况")},
+    {PostureEvent::SevereImpact,    QStringLiteral("检测到剧烈冲击，请立即靠边停车检查")},
+};
+
+// ============================================================
 // BehaviorDialog 构造
 // ============================================================
 BehaviorDialog::BehaviorDialog(RiskLevel riskLevel, const QString &message, QWidget *parent)
@@ -291,4 +328,44 @@ void BehaviorDialog::speak(const QString &text)
 void BehaviorDialog::beep()
 {
     std::fputc('\a', stderr);
+}
+
+// ============================================================
+// PostureEvent → RiskLevel
+// ============================================================
+RiskLevel BehaviorDialog::postureToRisk(PostureEvent event)
+{
+    return POSTURE_RISK_MAP.value(event, RiskLevel::Normal);
+}
+
+// ============================================================
+// PostureEvent → 显示文字
+// ============================================================
+QString BehaviorDialog::postureToText(PostureEvent event)
+{
+    return POSTURE_TEXT_MAP.value(event, QStringLiteral("未知姿态"));
+}
+
+// ============================================================
+// PostureEvent → 语音提示
+// ============================================================
+QString BehaviorDialog::postureToVoice(PostureEvent event)
+{
+    return POSTURE_VOICE_MAP.value(event);
+}
+
+// ============================================================
+// 联合风险判定：行为 + 姿态
+// 两者都异常 → High；否则取较高者
+// ============================================================
+RiskLevel BehaviorDialog::combinedRisk(RiskLevel driverRisk, RiskLevel postureRisk)
+{
+    // 行为异常 + 姿态异常 → 直接升级为高风险
+    if (driverRisk > RiskLevel::Normal && postureRisk > RiskLevel::Normal) {
+        return RiskLevel::High;
+    }
+    // 否则取两者较高者
+    return static_cast<RiskLevel>(qMax(
+        static_cast<int>(driverRisk),
+        static_cast<int>(postureRisk)));
 }
