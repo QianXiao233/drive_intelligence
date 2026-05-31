@@ -932,8 +932,12 @@ void MainWindow::playNextSpeech()
                     QStringLiteral("(New-Object Media.SoundPlayer '%1').PlaySync()")
                         .arg(wavPath)});
 #else
-            speechProcess->start(QStringLiteral("paplay"),
-                QStringList{wavPath});
+            speechProcess->start(QStringLiteral("ffplay"),
+                QStringList{QStringLiteral("-nodisp"),
+                            QStringLiteral("-autoexit"),
+                            QStringLiteral("-loglevel"),
+                            QStringLiteral("quiet"),
+                            wavPath});
 #endif
             if (!speechProcess->waitForStarted(800)) {
                 speechPlaying = false;
