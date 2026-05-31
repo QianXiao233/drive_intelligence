@@ -145,6 +145,7 @@ private:
     // 通道②: JSON 结果 (Python→Qt:9998)
     QTcpServer *m_jsonServer = nullptr;
     QByteArray m_jsonBuffer;
+    bool m_jsonConnected = false;
 
     // 通道③: 抓拍图像 (Python→Qt:9997)
     QTcpServer *m_captureServer = nullptr;
