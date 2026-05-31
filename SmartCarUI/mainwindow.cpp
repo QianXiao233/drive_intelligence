@@ -616,6 +616,7 @@ void MainWindow::updateDriverAnalysis(bool faceDetected, const cv::Mat &frame, c
     }
 
     if (risk >= RiskLevel::Medium && !alertText.isEmpty()) {
+        BehaviorDialog::showAlert(risk, alertText, QStringLiteral("local_driver"));
         maybeVoiceAlert(risk, alertText);
     }
 }
@@ -643,6 +644,17 @@ void MainWindow::captureAndShow(const cv::Mat &frame, const QString &reason)
         params.push_back(cv::IMWRITE_JPEG_QUALITY);
         params.push_back(90);
         cv::imwrite(filePath.toStdString(), saveFrame, params);
+
+        // 循环清理：最多保留 10 张抓拍
+        {
+            QStringList filters;
+            filters << QStringLiteral("capture_*.jpg");
+            QStringList entries = dir.entryList(filters, QDir::Files, QDir::Name);
+            while (entries.size() > 10) {
+                QFile::remove(dir.filePath(entries.first()));
+                entries.removeFirst();
+            }
+        }
 
         cv::Mat rgb;
         if (saveFrame.channels() == 3) {
@@ -673,19 +685,29 @@ void MainWindow::maybeVoiceAlert(RiskLevel riskLevel, const QString &message)
 {
     const qint64 now = QDateTime::currentMSecsSinceEpoch();
 
-    if (voiceBusy) {
+    // 高风险可以打断语音交互模式
+    if (voiceBusy && riskLevel != RiskLevel::High) {
         return;
     }
 
+    // 通用语音冷却：5 秒内不重复播报任何语音
+    if (now - lastVoiceAlertMs < 5000) {
+        return;
+    }
+
+    // 同级别或更低级别 15 秒内不重复
     if (now - lastDriverAlertMs < 15000 && riskLevel <= lastDriverAlertRisk) {
         return;
     }
 
+    lastVoiceAlertMs = now;
     lastDriverAlertMs = now;
     lastDriverAlertRisk = riskLevel;
 
     if (riskLevel == RiskLevel::High) {
         QApplication::beep();
+        // 高风险打断当前正在播放的低/中风险语音
+        clearSpeechQueue(true);
     }
 
     speak(message);

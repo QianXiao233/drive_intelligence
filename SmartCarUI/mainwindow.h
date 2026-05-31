@@ -125,6 +125,7 @@ private:
     qint64 noDriverStartMs = 0;
     qint64 lastCaptureMs = 0;
     qint64 lastDriverAlertMs = 0;
+    qint64 lastVoiceAlertMs = 0;
     qint64 lastRoadAlertMs = 0;
 
     RiskLevel currentDriverRisk = RiskLevel::Normal;
