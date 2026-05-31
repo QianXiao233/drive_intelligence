@@ -1,6 +1,0 @@
-PyQt5>=5.15
-opencv-python>=4.5
-numpy>=1.21
-smbus2
-onnxruntime>=1.12
-# 开发板 RK3566 需额外安装 rknnlite（从厂商 SDK 获取）

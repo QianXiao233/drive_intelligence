@@ -1,0 +1,5 @@
+# 只跟踪 SmartCarUI 和 model-server
+SmartCarUI_Python/
+SmartCarUI_Python.zip
+test/
+.reasonix/
