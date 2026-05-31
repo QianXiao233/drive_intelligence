@@ -601,14 +601,21 @@ void MainWindow::updateDriverAnalysis(bool faceDetected, const cv::Mat &frame, c
             statusText = "驾驶员状态：短暂视线偏移\n疲劳程度：正常\n分心情况：轻微注意力偏移\n风险等级：低风险";
         }
     } else {
-        // 人脸存在时，保持待命状态，等待识别模型数据
+        // 人脸存在时
         risk = RiskLevel::Normal;
-        statusText = QStringLiteral("驾驶员状态：等待识别模型连接");
+        if (m_jsonConnected) {
+            // 模型已连接，让Socket数据管理状态文字，本地不覆盖
+            statusText.clear();
+        } else {
+            statusText = QStringLiteral("驾驶员状态：正常");
+        }
     }
 
     currentDriverRisk = risk;
-    ui->lblDriverStatus->setText(statusText);
-    applyDriverRiskStyle(risk);
+    if (!statusText.isEmpty()) {
+        ui->lblDriverStatus->setText(statusText);
+        applyDriverRiskStyle(risk);
+    }
 
     if (needCapture && now - lastCaptureMs > 10000) {
         captureAndShow(frame, captureReason);
@@ -1088,6 +1095,7 @@ void MainWindow::onJsonNewConnection()
         QTcpSocket *client = m_jsonServer->nextPendingConnection();
         connect(client, &QTcpSocket::readyRead, this, &MainWindow::onJsonReadyRead);
         connect(client, &QTcpSocket::disconnected, this, &MainWindow::onJsonClientDisconnected);
+        m_jsonConnected = true;
         qDebug() << "JSON client connected:" << client->peerAddress().toString();
         setStatusText(QStringLiteral("Python 客户端已连接 (JSON)"));
     }
@@ -1175,6 +1183,7 @@ void MainWindow::onJsonClientDisconnected()
     }
     setStatusText(QStringLiteral("Python 客户端已断开 (JSON)"));
 
+    m_jsonConnected = false;
     // 重置驾驶员状态
     ui->lblDriverStatus->setText(QStringLiteral("驾驶员状态：等待识别模型连接"));
     applyDriverRiskStyle(RiskLevel::Normal);
