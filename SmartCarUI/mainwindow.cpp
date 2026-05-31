@@ -1093,9 +1093,10 @@ void MainWindow::onJsonReadyRead()
         // 2) 记录最近行为
         m_lastSocketBehavior = behavior;
 
-        // 3) 弹窗（只有 Medium/High 才弹）
+        // 3) 弹窗 + 语音（只有 Medium/High 才触发）
         bool popped = BehaviorDialog::showAlert(risk, text, behavior);
         if (popped) {
+            maybeVoiceAlert(risk, text);
             setStatusText(QStringLiteral("行为警报：%1").arg(text));
         }
     }

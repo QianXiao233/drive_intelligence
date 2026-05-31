@@ -193,9 +193,10 @@ BehaviorDialog::BehaviorDialog(RiskLevel riskLevel, const QString &message, QWid
 }
 
 // ============================================================
-// showAlert — 统一入口
+// showAlert — 统一入口（仅弹窗，不处理语音）
 // Normal / Low  → 不弹窗，返回 false（调用方自行改文字颜色）
-// Medium / High → 弹窗 + 语音 + 蜂鸣，返回 true
+// Medium / High → 弹非模态弹窗，返回 true
+// 语音由调用方（MainWindow::maybeVoiceAlert）统一管理
 // ============================================================
 bool BehaviorDialog::showAlert(RiskLevel riskLevel, const QString &message,
                                 const QString &behaviorKey)
@@ -217,15 +218,6 @@ bool BehaviorDialog::showAlert(RiskLevel riskLevel, const QString &message,
     // 屏幕居中
     if (auto *screen = QApplication::primaryScreen()) {
         dlg->move(screen->geometry().center() - dlg->rect().center());
-    }
-
-    // 语音播报
-    if (riskLevel >= RiskLevel::Medium) {
-        speak(message);
-    }
-    // 高风险蜂鸣
-    if (riskLevel == RiskLevel::High) {
-        beep();
     }
 
     return true;

@@ -1,0 +1,207 @@
+$ dir /s /b D:\opencv* 2>nul
+[exit 0]
+D:\35931\Desktop\ppt-master-main\skills\ppt-master\templates\icons\simple-icons\opencv.svg
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\opencv
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv-platform
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-arm.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-arm.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-arm64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-arm64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-x86.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-x86.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-x86_64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-android-x86_64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-ios-arm64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-ios-arm64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-ios-x86_64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-ios-x86_64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-armhf.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-armhf.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-ppc64le.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-ppc64le.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-x86.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-x86.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-x86_64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-linux-x86_64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-macosx-x86_64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-macosx-x86_64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-windows-x86.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-windows-x86.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-windows-x86_64.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4-windows-x86_64.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4.pom
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv\4.0.1-1.4.4\opencv-4.0.1-1.4.4.pom.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv-platform\4.0.1-1.4.4\opencv-platform-4.0.1-1.4.4.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv-platform\4.0.1-1.4.4\opencv-platform-4.0.1-1.4.4.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv-platform\4.0.1-1.4.4\opencv-platform-4.0.1-1.4.4.pom
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\javacpp-presets\opencv-platform\4.0.1-1.4.4\opencv-platform-4.0.1-1.4.4.pom.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\opencv\4.9.0-1.5.11-SNAPSHOT\opencv-4.9.0-1.5.11-SNAPSHOT.jar.lastUpdated
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\bytedeco\opencv\4.9.0-1.5.11-SNAPSHOT\opencv-4.9.0-1.5.11-SNAPSHOT.pom.lastUpdated
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.0.1\opencv-4.0.1.jar.lastUpdated
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.0.1\opencv-4.0.1.pom.lastUpdated
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.5.5-1\opencv-4.5.5-1.jar
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.5.5-1\opencv-4.5.5-1.jar.sha1
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.5.5-1\opencv-4.5.5-1.pom
+D:\35931\Desktop\yolo_project\后端\maven\repositoty\org\openpnp\opencv\4.5.5-1\opencv-4.5.5-1.pom.sha1
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\opencv_python-4.13.0.92.dist-info
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\cv2\opencv_videoio_ffmpeg4130_64.dll
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\imageio\plugins\opencv.py
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\imageio\plugins\__pycache__\opencv.cpython-39.pyc
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\imgviz\_io\opencv.py
+D:\Environment\miniconda3\envs\flaskProject2\Lib\site-packages\imgviz\_io\__pycache__\opencv.cpython-39.pyc
+D:\Environment\miniconda3\envs\yolo\Lib\site-packages\opencv_python-4.10.0.84.dist-info
+D:\Environment\miniconda3\envs\yolo\Lib\site-packages\opencv_python_headless-4.10.0.84.dist-info
+D:\Environment\miniconda3\envs\yolo\Lib\site-packages\cv2\opencv_videoio_ffmpeg4100_64.dll
+D:\Environment\miniconda3\envs\yolo\Lib\site-packages\imageio\plugins\opencv.py
+D:\Environment\miniconda3\envs\yolo\Lib\site-packages\imageio\plugins\__pycache__\opencv.cpython-38.pyc
+D:\PhotoShop\Adobe Photoshop 2026\opencv_world4110.dll
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\OpenCVLensDistortion.uplugin
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensCalibration\UHT\OpenCVLensCalibrationClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensCalibration\UHT\OpenCVLensCalibrator.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionBlueprintLibrary.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionParameters.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensCalibration\UHT\OpenCVLensCalibrationClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensCalibration\UHT\OpenCVLensCalibrator.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionBlueprintLibrary.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVLensDistortion\UHT\OpenCVLensDistortionParameters.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealEditor\Development\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealEditor\Development\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVLensCalibration\OpenCVLensCalibration.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVLensDistortion\OpenCVLensDistortion.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVLensCalibration\OpenCVLensCalibration.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVLensDistortion\OpenCVLensDistortion.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensCalibration
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensCalibration\OpenCVLensCalibration.Build.cs
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensCalibration\Private\OpenCVLensCalibrationModule.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensCalibration\Private\OpenCVLensCalibrator.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensCalibration\Private\OpenCVLensCalibrator.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\OpenCVLensDistortion.Build.cs
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\Private\OpenCVLensDistortionBlueprintLibrary.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\Private\OpenCVLensDistortionModule.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\Private\OpenCVLensDistortionParameters.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\Public\OpenCVLensDistortionBlueprintLibrary.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Compositing\OpenCVLensDistortion\Source\OpenCVLensDistortion\Public\OpenCVLensDistortionParameters.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCalibrationProcessing\Source\MetaHumanCalibrationLib\Private\api\OpenCVCamera.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCalibrationProcessing\Source\MetaHumanCalibrationLib\Private\api\Internals\OpenCVCamera2MetaShapeCamera.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCalibrationProcessing\Source\Thirdparty\OpenCV_v4.5.5.tps
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCoreTechLib\Source\MetaHumanCoreTechLib\Private\api\OpenCVCamera.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCoreTechLib\Source\MetaHumanCoreTechLib\Private\api\Internals\OpenCVCamera2MetaShapeCamera.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\MetaHuman\MetaHumanCoreTechLib\Source\Thirdparty\OpenCV_v4.5.5.tps
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\OpenCV.uplugin
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Binaries\ThirdParty\Win64\opencv_world455.dll
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Content\Python\Lib\opencv-python_v4.5.5.62.tps
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVHelper\UHT\OpenCVBlueprintFunctionLibrary.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVHelper\UHT\OpenCVHelper.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealEditor\Inc\OpenCVHelper\UHT\OpenCVHelperClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVHelper\UHT\OpenCVBlueprintFunctionLibrary.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVHelper\UHT\OpenCVHelper.generated.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\UnrealGame\Inc\OpenCVHelper\UHT\OpenCVHelperClasses.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\x64\UnrealEditor\Development\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\x64\UnrealGame\Development\OpenCVHelper\OpenCVHelper.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Intermediate\Build\Win64\x64\UnrealGame\Shipping\OpenCVHelper\OpenCVHelper.precompiled
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\OpenCVHelper.Build.cs
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Private\OpenCVBlueprintFunctionLibrary.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Private\OpenCVHelper.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Private\OpenCVHelperModule.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Public\OpenCVBlueprintFunctionLibrary.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Public\OpenCVHelper.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\OpenCVHelper\Public\OpenCVUtils.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\OpenCV.Build.cs
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\OpenCV.tps
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\opencv_contrib.tps
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\include\opencv2
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\include\opencv2\opencv.hpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\include\opencv2\opencv_modules.hpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\include\opencv2\gapi\opencv_includes.hpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\lib\Win64\opencv_world455.lib
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\lib\Win64\opencv_world455d.lib
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Runtime\OpenCV\Source\ThirdParty\OpenCV\UnrealModules\unreal\include\opencv2
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\VirtualProduction\CaptureData\Source\CaptureDataCore\Private\OpenCVHelperLocal.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\VirtualProduction\CaptureData\Source\CaptureDataCore\Public\OpenCVHelperLocal.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\VirtualProduction\CaptureManager\CaptureManagerApp\Source\CaptureManagerMediaRW\Private\Readers\OpenCVCalibrationReader.cpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Plugins\VirtualProduction\CaptureManager\CaptureManagerApp\Source\CaptureManagerMediaRW\Private\Readers\OpenCVCalibrationReader.h
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Boost\Deploy\boost-1.85.0\include\boost\compute\interop\opencv
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Boost\Deploy\boost-1.85.0\include\boost\compute\interop\opencv.hpp
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\opencv-python_v4.5.5.62.LICENSE
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\OpenCVContrib_License.txt
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\OpenCV_License.txt
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\OpenCV_v4.5.5.license
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\MarketplacePlugins\OpenCV 2.1_License.txt
+D:\Program Files\Epic Games\UE_5.7\Engine\Source\ThirdParty\Licenses\MarketplacePlugins\OpenCV_3.4.1_BSD License.txt
+D:\Program Files\JetBrains\CLion 2026.1.2\plugins\nativeDebug-plugin\bin\qt\opencvtypes.py
+D:\Program Files\MATLAB\R2025a\appdata\components\3p\opencvsdk_common 1732184463.xml
+D:\Program Files\MATLAB\R2025a\appdata\components\3p\opencvsdk_win64 1732233823.xml
+D:\Program Files\MATLAB\R2025a\appdata\components\3p\opencv_win64 1732234018.xml
+D:\Program Files\MATLAB\R2025a\appdata\files\3p\opencvsdk_common 1732184463_manifest.json
+D:\Program Files\MATLAB\R2025a\appdata\files\3p\opencvsdk_win64 1732233823_manifest.json
+D:\Program Files\MATLAB\R2025a\appdata\files\3p\opencv_win64 1732234018_manifest.json
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_calib3d470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_core470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_features2d470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_flann470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_imgproc470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_ml470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_objdetect470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_photo470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_stitching470.dll
+D:\Program Files\MATLAB\R2025a\bin\win64\opencv_video470.dll
+D:\Program Files\MATLAB\R2025a\extern\include\opencvmex.hpp
+D:\Program Files\MATLAB\R2025a\extern\include\images\opencvutils.hpp
+D:\Program Files\MATLAB\R2025a\extern\include\images\opencvutils_util.hpp
+D:\Program Files\MATLAB\R2025a\mcr\toolbox\images\opencv
+D:\Program Files\MATLAB\R2025a\mcr\toolbox\images\opencv\opencvwrapper
+D:\Program Files\MATLAB\R2025a\toolbox\gpucoder\gpucoder\foundation\templates\opencv_main.cpp
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvwrapper
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\include\opencv2
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\include\opencv2\opencv.hpp
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\include\opencv2\opencv_modules.hpp
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_calib3d470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_core470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_features2d470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_flann470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_imgproc470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_ml470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_objdetect470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_photo470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_stitching470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\images\opencv\opencvcg\win64\lib\opencv_video470.lib
+D:\Program Files\MATLAB\R2025a\toolbox\shared\opencvbuildinfo
+D:\Program Files\MATLAB\R2025a\toolbox\shared\opencvbuildinfo\opencvbuildinfo
+D:\Program Files\MATLAB\R2025a\toolbox\vision\visiondata\openCVStereoParameters.mat
+D:\Program Files\Tencent\Androws\Application\5.10.6000.5944\app_pilot\opencv_world4_maa.dll
+D:\Program Files\Tencent\AndrowsData\Component\Androws\app_pilot\opencv_world4_maa.dll
+D:\Program Files\Tencent\Marvis\Knowledgebase\1.0.1000.88\cv2\opencv_videoio_ffmpeg4120_64.dll
+D:\Program Files\Tencent\Marvis\Knowledgebase\1.0.1000.88\imageio\plugins\opencv.pyc
+D:\Program Files\Tencent\MarvisData\Component\Knowledgebase\knowledgebase\cv2\opencv_videoio_ffmpeg4120_64.dll
+D:\Program Files\Tencent\MarvisData\Component\Knowledgebase\knowledgebase\imageio\plugins\opencv.pyc
+D:\Program Files\Tencent\QQNT\versions\9.9.28-46928\resources\app\opencv.dll
+D:\Program Files (x86)\ByteDance\douyin\7.8.201\game_desktop_widget\resources\app.asar.unpacked\node_modules\@cloudgame\addonSdk\bin\opencv_world4130.dll
+D:\Qt\Tools\QtCreator\share\qtcreator\debugger\opencvtypes.py
+D:\Qt\Tools\QtCreator\share\qtcreator\debugger-with-python2\opencvtypes.py
+D:\Qt\Tools\QtDesignStudio\share\qtcreator\debugger\opencvtypes.py
+D:\Qt\Tools\QtDesignStudio\share\qtcreator\debugger-with-python2\opencvtypes.py
