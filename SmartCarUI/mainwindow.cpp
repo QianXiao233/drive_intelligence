@@ -887,6 +887,61 @@ void MainWindow::playNextSpeech()
 
     const QString text = speechQueue.dequeue();
 
+    // ---- 语音文本 → 预生成音频文件 映射表 ----
+    static const QHash<QString, QString> s_voiceMap = {
+        // 语音交互按钮
+        {QStringLiteral("\u8BED\u97F3\u5F00\u59CB\u8BC6\u522B\uFF0C\u8BF7\u8BF4\u51FA\u60A8\u7684\u6307\u4EE4"), QStringLiteral("voice_start.wav")},
+        {QStringLiteral("\u8F66\u5185\u6C1B\u56F4\u706F\u5DF2\u81EA\u52A8\u5F00\u542F"),             QStringLiteral("voice_complete.wav")},
+        {QStringLiteral("\u8BED\u97F3\u8BC6\u522B\u5DF2\u53D6\u6D88"),                                 QStringLiteral("voice_cancel.wav")},
+        // 本地驾驶员分析
+        {QStringLiteral("\u8BF7\u4FDD\u6301\u6CE8\u610F\u529B\uFF0C\u6CE8\u610F\u524D\u65B9\u9053\u8DEF"),     QStringLiteral("alert_keep_attention.wav")},
+        {QStringLiteral("\u672A\u68C0\u6D4B\u5230\u9A7E\u9A76\u5458\uFF0C\u8BF7\u786E\u8BA4\u9A7E\u9A76\u5B89\u5168"), QStringLiteral("alert_no_driver.wav")},
+        // 路况
+        {QStringLiteral("\u68C0\u6D4B\u5230\u8DEF\u51B5\u5F02\u5E38\uFF0C\u8BF7\u6CE8\u610F\u9A7E\u9A76\u5B89\u5168"),   QStringLiteral("road_medium.wav")},
+        {QStringLiteral("\u68C0\u6D4B\u5230\u9AD8\u98CE\u9669\u8DEF\u51B5\uFF0C\u8BF7\u7ACB\u5373\u51CF\u901F\u6162\u884C"), QStringLiteral("road_high.wav")},
+        // 行为 - 中风险
+        {QStringLiteral("\u8B66\u544A\uFF1A\u5DE6\u4FA7\u6253\u7535\u8BDD"),     QStringLiteral("behavior_talk_left.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u53F3\u4FA7\u6253\u7535\u8BDD"),     QStringLiteral("behavior_talk_right.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u5DE6\u4FA7\u770B\u624B\u673A"),     QStringLiteral("behavior_text_left.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u53F3\u4FA7\u770B\u624B\u673A"),     QStringLiteral("behavior_text_right.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u9A7E\u9A76\u4E2D\u8BF7\u52FF\u5316\u5986"),  QStringLiteral("behavior_makeup.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u9A7E\u9A76\u4E2D\u8BF7\u52FF\u5438\u70DF"),  QStringLiteral("behavior_smoking.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u9A7E\u9A76\u4E2D\u8BF7\u52FF\u996E\u98DF"),  QStringLiteral("behavior_eating.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u64CD\u4F5C\u4E2D\u63A7\u8BBE\u5907"),    QStringLiteral("behavior_radio.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u64CD\u4F5C\u5BFC\u822A\u8BBE\u5907"),    QStringLiteral("behavior_gps.wav")},
+        {QStringLiteral("\u8B66\u544A\uFF1A\u5411\u540E\u4F38\u624B\u53D6\u7269"),  QStringLiteral("behavior_reach_behind.wav")},
+        // 行为 - 高风险
+        {QStringLiteral("\u5371\u9669\uFF1A\u68C0\u6D4B\u5230\u75B2\u52B3\u9A7E\u9A76"),   QStringLiteral("behavior_fatigue.wav")},
+        {QStringLiteral("\u5371\u9669\uFF1A\u68C0\u6D4B\u5230\u6253\u54C8\u6B20"),       QStringLiteral("behavior_yawning.wav")},
+        {QStringLiteral("\u5371\u9669\uFF1A\u53CC\u624B\u79BB\u5F00\u65B9\u5411\u76D8"), QStringLiteral("behavior_hands_off.wav")},
+    };
+
+    // 1) 查找预生成音频文件
+    QString wavFile = s_voiceMap.value(text);
+    if (!wavFile.isEmpty()) {
+        QString voicesDir = QCoreApplication::applicationDirPath()
+            + QStringLiteral("/voices/");
+        QString wavPath = voicesDir + wavFile;
+        if (QFile::exists(wavPath)) {
+            speechPlaying = true;
+#ifdef Q_OS_WIN
+            speechProcess->start(QStringLiteral("powershell"),
+                QStringList{QStringLiteral("-c"),
+                    QStringLiteral("(New-Object Media.SoundPlayer '%1').PlaySync()")
+                        .arg(wavPath)});
+#else
+            speechProcess->start(QStringLiteral("aplay"),
+                QStringList{wavPath});
+#endif
+            if (!speechProcess->waitForStarted(800)) {
+                speechPlaying = false;
+                QTimer::singleShot(200, this, &MainWindow::playNextSpeech);
+            }
+            return;
+        }
+    }
+
+    // 2) 没有对应 WAV 文件（动态消息）→ 回退 espeak
     QString program = QStandardPaths::findExecutable("espeak");
     if (program.isEmpty()) {
         program = QStandardPaths::findExecutable("espeak-ng");
