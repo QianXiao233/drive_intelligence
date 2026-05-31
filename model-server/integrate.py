@@ -132,7 +132,10 @@ class ModelRunner:
         else:  # rknn
             outputs = self.rknn.inference(inputs=[input_tensor])
 
-        probs = outputs[0][0]
+        logits = outputs[0][0]
+        # Softmax 把 logits 转成 0~1 概率
+        exp_logits = np.exp(logits - np.max(logits))  # 减最大值防溢出
+        probs = exp_logits / np.sum(exp_logits)
         pred_idx = int(np.argmax(probs))
         confidence = float(probs[pred_idx])
         full_name = CLASSES[pred_idx]

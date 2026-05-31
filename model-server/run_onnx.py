@@ -64,7 +64,10 @@ def main():
     # ==========================================
     # 解析结果
     # ==========================================
-    pred_probs = outputs[0][0]
+    logits = outputs[0][0]
+    # Softmax 转成 0~1 概率
+    exp_logits = np.exp(logits - np.max(logits))
+    pred_probs = exp_logits / np.sum(exp_logits)
     pred_index = np.argmax(pred_probs)
     pred_class = CLASSES[pred_index]
     confidence = pred_probs[pred_index]

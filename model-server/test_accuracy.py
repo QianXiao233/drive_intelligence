@@ -84,7 +84,10 @@ def infer(session, input_name: str, img: np.ndarray) -> tuple:
     """推理一帧，返回 (pred_idx, pred_class, confidence, all_probs)"""
     tensor = preprocess(img)
     outputs = session.run(None, {input_name: tensor})
-    probs = outputs[0][0]
+    logits = outputs[0][0]
+    # Softmax 转成 0~1 概率
+    exp_logits = np.exp(logits - np.max(logits))
+    probs = exp_logits / np.sum(exp_logits)
     pred_idx = int(np.argmax(probs))
     return pred_idx, CLASSES[pred_idx], float(probs[pred_idx]), probs
 
