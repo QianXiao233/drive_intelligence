@@ -932,7 +932,7 @@ void MainWindow::playNextSpeech()
                     QStringLiteral("(New-Object Media.SoundPlayer '%1').PlaySync()")
                         .arg(wavPath)});
 #else
-            speechProcess->start(QStringLiteral("aplay"),
+            speechProcess->start(QStringLiteral("paplay"),
                 QStringList{wavPath});
 #endif
             if (!speechProcess->waitForStarted(800)) {
