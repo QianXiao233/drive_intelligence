@@ -296,7 +296,10 @@ void MainWindow::updateCameraFrame()
     std::vector<cv::Rect> faces;
     bool faceDetected = false;
 
-    if (faceCascadeLoaded) {
+    if (m_jsonConnected) {
+        // Python 模型已连接 → 跳过本地 Haar 检测，全权交给模型
+        faceDetected = true;
+    } else if (faceCascadeLoaded) {
         // 人脸识别比较耗 CPU，不再每一帧都跑。
         // 每 5 帧识别一次，其余帧复用上次结果，画面会顺很多。
         if (cameraFrameCounter % 5 == 1) {
@@ -341,8 +344,10 @@ void MainWindow::updateCameraFrame()
         faceDetected = true;
     }
 
-    updateDriverPresence(faceDetected);
-    updateDriverAnalysis(faceDetected, frame, faces);
+    if (!m_jsonConnected) {
+        updateDriverPresence(faceDetected);
+        updateDriverAnalysis(faceDetected, frame, faces);
+    }
 
     try {
         cv::Mat showFrame = frame.clone();
