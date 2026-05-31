@@ -310,7 +310,13 @@ class FrameReceiver:
             print(f"[推理] 错误: {e}")
             return
 
-        message = CCODE_TEXT.get(ccode, full_name)
+        # 置信度过低 → 认为无人或场景模糊
+        if confidence < getattr(self, '_conf_threshold', 0.35):
+            ccode = "no_driver"
+            message = "未检测到驾驶员，请确认驾驶安全"
+            print(f"  → 置信度过低({confidence:.3f})，视为无人")
+        else:
+            message = CCODE_TEXT.get(ccode, full_name)
         print(f"  → {full_name} ({confidence:.3f})")
 
         # 发送 JSON 结果
@@ -342,6 +348,8 @@ def main():
                         help="Qt JSON 端口")
     parser.add_argument("--capture-port", type=int, default=9997,
                         help="Qt 抓拍端口")
+    parser.add_argument("--confidence", type=float, default=0.35,
+                        help="置信度阈值(低于此值视为无人，默认0.35)")
     args = parser.parse_args()
 
     print("=" * 50)
@@ -365,6 +373,7 @@ def main():
         json_host=args.qt_host, json_port=args.json_port,
         capture_host=args.qt_host, capture_port=args.capture_port,
     )
+    receiver._conf_threshold = args.confidence
 
     try:
         receiver.start()

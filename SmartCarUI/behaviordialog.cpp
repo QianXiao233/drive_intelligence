@@ -144,8 +144,8 @@ static const QMap<QString, QString> BEHAVIOR_TEXT_MAP = {
     {QStringLiteral("drinking"),        QStringLiteral("警告：驾驶中请勿饮食")},
     {QStringLiteral("tired"),           QStringLiteral("危险：检测到疲劳驾驶")},
     {QStringLiteral("eyes_closed"),     QStringLiteral("危险：检测到疲劳驾驶")},
-    {QStringLiteral("no_driver"),       QStringLiteral("末检测到驾驶员，请确认驾驶安全")},
-    {QStringLiteral("no_face"),         QStringLiteral("末检测到驾驶员，请确认驾驶安全")},
+    {QStringLiteral("no_driver"),       QStringLiteral("未检测到驾驶员，请确认驾驶安全")},
+    {QStringLiteral("no_face"),         QStringLiteral("未检测到驾驶员，请确认驾驶安全")},
 };
 
 
