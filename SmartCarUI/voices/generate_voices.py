@@ -46,6 +46,7 @@ VOICES = [
     ("behavior_radio.wav",       "警告：操作中控设备"),
     ("behavior_gps.wav",         "警告：操作导航设备"),
     ("behavior_reach_behind.wav","警告：向后伸手取物"),
+    ("behavior_phone_using.wav", "警告：驾驶中使用手机"),
 
     # === 行为识别 - 高风险 ===
     ("behavior_fatigue.wav",  "危险：检测到疲劳驾驶"),

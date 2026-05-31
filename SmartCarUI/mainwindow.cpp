@@ -914,6 +914,8 @@ void MainWindow::playNextSpeech()
         {QStringLiteral("\u5371\u9669\uFF1A\u68C0\u6D4B\u5230\u75B2\u52B3\u9A7E\u9A76"),   QStringLiteral("behavior_fatigue.wav")},
         {QStringLiteral("\u5371\u9669\uFF1A\u68C0\u6D4B\u5230\u6253\u54C8\u6B20"),       QStringLiteral("behavior_yawning.wav")},
         {QStringLiteral("\u5371\u9669\uFF1A\u53CC\u624B\u79BB\u5F00\u65B9\u5411\u76D8"), QStringLiteral("behavior_hands_off.wav")},
+        // 补充英文别名
+        {QStringLiteral("\u8B66\u544A\uFF1A\u9A7E\u9A76\u4E2D\u4F7F\u7528\u624B\u673A"),          QStringLiteral("behavior_phone_using.wav")},
     };
 
     // 1) 查找预生成音频文件
