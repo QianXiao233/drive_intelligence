@@ -318,6 +318,12 @@ class FrameReceiver:
             ccode = "no_driver"
             message = "未检测到驾驶员，请确认驾驶安全"
             print(f"  → 置信度过低({confidence:.3f})，视为无人")
+        elif ccode == "C21":
+            # 暂时屏蔽 C21_Leave_Steering_Wheel（双手离开方向盘）
+            ccode = "C1"
+            full_name = "C1_Drive_Safe"
+            message = CCODE_TEXT.get("C1", "驾驶状态：正常")
+            print(f"  → 已屏蔽 C21，转为 C1_Drive_Safe")
         else:
             message = CCODE_TEXT.get(ccode, full_name)
         print(f"  → {full_name} ({confidence:.3f})")
