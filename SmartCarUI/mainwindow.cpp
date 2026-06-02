@@ -148,7 +148,7 @@ void MainWindow::initUiState()
     ui->lblCaptureImg->setAlignment(Qt::AlignCenter);
     ui->lblCaptureImg->setScaledContents(true);
 
-    ui->lblDriverStatus->setText("驾驶员状态：等待摄像头画面");
+    ui->lblDriverStatus->setText(QStringLiteral("模型推理服务：未连接 ⚠\n已启用 CV 应急识别\n驾驶员状态：等待摄像头画面"));
     ui->lblDriverStatus->setWordWrap(true);
     ui->lblDriverStatus->setGeometry(560, 175, 350, 95);
 
@@ -612,7 +612,7 @@ void MainWindow::updateDriverAnalysis(bool faceDetected, const cv::Mat &frame, c
             // 模型已连接，让Socket数据管理状态文字，本地不覆盖
             statusText.clear();
         } else {
-            statusText = QStringLiteral("驾驶员状态：正常");
+            statusText = QStringLiteral("模型推理服务：未连接 ⚠\n已启用 CV 应急识别\n驾驶员状态：正常（本地检测）");
         }
     }
 
@@ -1190,7 +1190,7 @@ void MainWindow::onJsonClientDisconnected()
 
     m_jsonConnected = false;
     // 重置驾驶员状态
-    ui->lblDriverStatus->setText(QStringLiteral("驾驶员状态：等待识别模型连接"));
+    ui->lblDriverStatus->setText(QStringLiteral("模型推理服务：未连接 ⚠\n已启用 CV 应急识别"));
     applyDriverRiskStyle(RiskLevel::Normal);
 }
 
