@@ -99,7 +99,8 @@ class ModelRunner:
         # 从模型输入形状自动获取尺寸: [1,3,H,W]
         input_shape = self.session.get_inputs()[0].shape
         self.input_size = input_shape[2]  # H, 如 224 或 256
-        print(f"[模型] ONNX 加载成功: {model_path}  输入: {input_shape[2]}x{input_shape[3]}")
+        out = self.session.get_outputs()[0]
+        print(f"[模型] ONNX 加载成功: {model_path}  输入: {input_shape[2]}x{input_shape[3]}  输出: {out.name} 形状: {out.shape}")
 
     def _init_rknn(self):
         from rknnlite.api import RKNNLite
@@ -136,14 +137,43 @@ class ModelRunner:
         else:  # rknn
             outputs = self.rknn.inference(inputs=[input_tensor])
 
-        logits = outputs[0][0]
+        # 打印输出结构帮助调试
+        if not hasattr(self, '_debugged_output'):
+            self._debugged_output = True
+            print(f"[模型] outputs 类型: {type(outputs)}, 长度: {len(outputs)}")
+            if len(outputs) > 0:
+                out = outputs[0]
+                print(f"[模型] 输出[0] 类型: {type(out)}, 形状: {out.shape if hasattr(out,'shape') else '?'}, dtype: {out.dtype if hasattr(out,'dtype') else '?'}")
+                if hasattr(out, 'shape') and len(out.shape) == 2:
+                    print(f"[模型] 类别数: {out.shape[1]}")
+
+        if len(outputs) == 0 or outputs[0] is None:
+            print("[模型] 推理无输出")
+            return "C1", "C1_Drive_Safe", 0.0
+
+        # 处理不同输出形状
+        raw = outputs[0]
+        if len(raw.shape) == 2:
+            logits = raw[0]              # (1, 22) → (22,)
+        elif len(raw.shape) == 1:
+            logits = raw                 # (22,) 直接用
+        else:
+            logits = raw.flatten()       # 其他形状展平
+
         # Softmax 把 logits 转成 0~1 概率
-        exp_logits = np.exp(logits - np.max(logits))  # 减最大值防溢出
+        exp_logits = np.exp(logits - np.max(logits))
         probs = exp_logits / np.sum(exp_logits)
         pred_idx = int(np.argmax(probs))
+
+        # 防止类别数超出 CLASSES 范围
+        num_classes = len(CLASSES)
+        if pred_idx >= num_classes:
+            print(f"[模型] ⚠ pred_idx={pred_idx} 超出 CLASSES({num_classes})，取模修正")
+            pred_idx = pred_idx % num_classes
+
         confidence = float(probs[pred_idx])
         full_name = CLASSES[pred_idx]
-        ccode = full_name.split("_")[0]  # "C8_Make_Up" → "C8"
+        ccode = full_name.split("_")[0] if "_" in full_name else full_name
 
         return ccode, full_name, confidence
 
