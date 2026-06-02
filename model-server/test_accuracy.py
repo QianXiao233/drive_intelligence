@@ -64,15 +64,16 @@ def load_model(onnx_path: str):
     print(f"📦 加载模型: {onnx_path}")
     session = ort.InferenceSession(onnx_path, providers=['CPUExecutionProvider'])
     input_name = session.get_inputs()[0].name
+    input_size = session.get_inputs()[0].shape[2]  # H, 如 224 或 256
     print(f"   输入: {input_name}, 形状: {session.get_inputs()[0].shape}")
     print(f"   输出: {session.get_outputs()[0].name}, 形状: {session.get_outputs()[0].shape}")
-    return session, input_name
+    return session, input_name, input_size
 
 
-def preprocess(img: np.ndarray) -> np.ndarray:
-    """预处理单帧：BGR→RGB→256x256→归一化→NCHW"""
+def preprocess(img: np.ndarray, input_size: int = 256) -> np.ndarray:
+    """预处理单帧：BGR→RGB→Resize→归一化→NCHW"""
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = cv2.resize(img, (256, 256))
+    img = cv2.resize(img, (input_size, input_size))
     img = img.astype(np.float32) / 255.0
     img = (img - [0.485, 0.456, 0.406]) / [0.229, 0.224, 0.225]
     img = np.transpose(img, (2, 0, 1))     # HWC → CHW
@@ -80,9 +81,9 @@ def preprocess(img: np.ndarray) -> np.ndarray:
     return img.astype(np.float32)
 
 
-def infer(session, input_name: str, img: np.ndarray) -> tuple:
+def infer(session, input_name: str, img: np.ndarray, input_size: int = 256) -> tuple:
     """推理一帧，返回 (pred_idx, pred_class, confidence, all_probs)"""
-    tensor = preprocess(img)
+    tensor = preprocess(img, input_size)
     outputs = session.run(None, {input_name: tensor})
     logits = outputs[0][0]
     # Softmax 转成 0~1 概率
@@ -165,7 +166,7 @@ def main():
     print("=" * 60)
 
     # 1. 加载模型
-    session, input_name = load_model(args.model)
+    session, input_name, input_size = load_model(args.model)
 
     # 2. 扫描测试图片
     print(f"\n📂 扫描测试数据: {args.data}")
@@ -194,7 +195,7 @@ def main():
             continue
 
         start = time.perf_counter()
-        pred_idx, pred_class, conf, probs = infer(session, input_name, img)
+        pred_idx, pred_class, conf, probs = infer(session, input_name, img, input_size)
         elapsed = (time.perf_counter() - start) * 1000  # ms
 
         total_time += elapsed

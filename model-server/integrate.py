@@ -96,7 +96,10 @@ class ModelRunner:
             raise FileNotFoundError(f"ONNX 模型不存在: {model_path}")
         self.session = ort.InferenceSession(model_path, providers=['CPUExecutionProvider'])
         self.input_name = self.session.get_inputs()[0].name
-        print(f"[模型] ONNX 加载成功: {model_path}")
+        # 从模型输入形状自动获取尺寸: [1,3,H,W]
+        input_shape = self.session.get_inputs()[0].shape
+        self.input_size = input_shape[2]  # H, 如 224 或 256
+        print(f"[模型] ONNX 加载成功: {model_path}  输入: {input_shape[2]}x{input_shape[3]}")
 
     def _init_rknn(self):
         from rknnlite.api import RKNNLite
@@ -109,9 +112,10 @@ class ModelRunner:
         print(f"[模型] RKNN 加载成功: {model_path}")
 
     def preprocess(self, frame: np.ndarray) -> np.ndarray:
-        """预处理：BGR→RGB→Resize 256x256→Normalize→NCHW"""
+        """预处理：BGR→RGB→Resize 模型输入尺寸→Normalize→NCHW"""
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img, (256, 256))
+        size = getattr(self, 'input_size', 256)
+        img = cv2.resize(img, (size, size))
         img = img.astype(np.float32) / 255.0
         img = (img - [0.485, 0.456, 0.406]) / [0.229, 0.224, 0.225]
         img = np.transpose(img, (2, 0, 1))   # HWC→CHW

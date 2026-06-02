@@ -25,7 +25,9 @@ def main():
 
     # 获取模型的输入节点名称
     input_name = session.get_inputs()[0].name
-    print(f"✅ ONNX 模型加载成功！输入节点名称: {input_name}")
+    input_shape = session.get_inputs()[0].shape
+    input_size = input_shape[2]  # H, 如 224 或 256
+    print(f"✅ ONNX 模型加载成功！输入: {input_size}x{input_size}")
 
     # ==========================================
     # 读取并预处理图片 (严格保持 float32)
@@ -36,9 +38,9 @@ def main():
         print("找不到测试图片！请检查路径。")
         return
 
-    # BGR 转 RGB，并拉伸到 256x256
+    # BGR 转 RGB，并拉伸到模型输入尺寸
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = cv2.resize(img, (256, 256))
+    img = cv2.resize(img, (input_size, input_size))
 
     # 标准化并锁死 float32 精度
     img = img.astype(np.float32) / 255.0
